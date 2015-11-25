@@ -2,7 +2,7 @@
 
 See:
 https://packaging.python.org/en/latest/distributing.html
-https://github.com/pypa/sampleproject
+https://github.com/cdwilson/cdwilson-sampleproject
 """
 
 # Always prefer setuptools over distutils
@@ -13,27 +13,42 @@ from os import path
 
 here = path.abspath(path.dirname(__file__))
 
+# from https://github.com/pypa/pip/blob/develop/setup.py
+def read(*parts):
+    # intentionally *not* adding an encoding option to open, See:
+    #   https://github.com/pypa/virtualenv/issues/201#issuecomment-3145690
+    return codecs.open(os.path.join(here, *parts), 'r').read()
+
+# from https://github.com/pypa/pip/blob/develop/setup.py
+def find_version(*file_paths):
+    version_file = read(*file_paths)
+    version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]",
+                              version_file, re.M)
+    if version_match:
+        return version_match.group(1)
+    raise RuntimeError("Unable to find version string.")
+
 # Get the long description from the README file
 with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='sample',
+    name='cdwilson-sample',
 
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='1.2.0',
+    version=find_version("cdwilson-sample", "__init__.py"),,
 
-    description='A sample Python project',
+    description="cdwilson's sample Python project",
     long_description=long_description,
 
     # The project's main homepage.
-    url='https://github.com/pypa/sampleproject',
+    url='https://github.com/cdwilson/cdwilson-sampleproject',
 
     # Author details
-    author='The Python Packaging Authority',
-    author_email='pypa-dev@googlegroups.com',
+    author='Christopher Wilson',
+    author_email='cwilson@cdwilson.us',
 
     # Choose your license
     license='MIT',
@@ -79,7 +94,7 @@ setup(
     # your project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires=['peppercorn'],
+    # install_requires=['peppercorn'],
 
     # List additional groups of dependencies here (e.g. development
     # dependencies). You can install these using the following syntax,
@@ -108,7 +123,7 @@ setup(
     # pip to create the appropriate form of executable for the target platform.
     entry_points={
         'console_scripts': [
-            'sample=sample:main',
+            'cdwilson-sample=cdwilson-sample:main',
         ],
     },
 )
