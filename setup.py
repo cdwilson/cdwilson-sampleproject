@@ -34,12 +34,12 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     # https://www.python.org/dev/peps/pep-0426/#name
-    name='cdwilson-sample',
+    name='cdwilson_sample',
 
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version=find_version("cdwilson-sample", "__init__.py"),,
+    version=find_version("cdwilson_sample", "__init__.py"),,
 
     description="cdwilson's sample Python project",
     long_description=long_description,
@@ -124,7 +124,7 @@ setup(
     # pip to create the appropriate form of executable for the target platform.
     entry_points={
         'console_scripts': [
-            'cdwilson-sample=cdwilson-sample:main',
+            'cdwilson_sample=cdwilson_sample:main',
         ],
     },
 )
