@@ -5,13 +5,12 @@ https://packaging.python.org/en/latest/distributing.html
 https://github.com/cdwilson/cdwilson-sampleproject
 """
 
+import os, re, codecs
+
 # Always prefer setuptools over distutils
 from setuptools import setup, find_packages
-# To use a consistent encoding
-from codecs import open
-from os import path
 
-here = path.abspath(path.dirname(__file__))
+here = os.path.abspath(os.path.dirname(__file__))
 
 # from https://github.com/pypa/pip/blob/develop/setup.py
 def read(*parts):
@@ -28,9 +27,7 @@ def find_version(*file_paths):
         return version_match.group(1)
     raise RuntimeError("Unable to find version string.")
 
-# Get the long description from the README file
-with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
-    long_description = f.read()
+long_description = read('README.rst')
 
 setup(
     # https://www.python.org/dev/peps/pep-0426/#name
@@ -39,7 +36,7 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version=find_version("cdwilson_sample", "__init__.py"),,
+    version=find_version("cdwilson_sample", "__init__.py"),
 
     description="cdwilson's sample Python project",
     long_description=long_description,
