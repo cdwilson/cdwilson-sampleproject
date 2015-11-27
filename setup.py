@@ -31,7 +31,7 @@ long_description = read('README.rst')
 
 setup(
     # https://www.python.org/dev/peps/pep-0426/#name
-    name='cdwilson_sample',
+    name='cdwilson-sampleproject',
 
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
