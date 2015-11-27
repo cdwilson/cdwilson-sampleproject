@@ -1,3 +1,3 @@
-import sample
+import cdwilson_sample
 
-sample.main()
+cdwilson_sample.main()
