@@ -1,3 +1,3 @@
 import cdwilson_sample
 
-cdwilson_sample.main()
+sys.exit(cdwilson_sample.main())
