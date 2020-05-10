@@ -1,4 +1,5 @@
 import sys
-import cdwilson_sample
+from cdwilson_sample.cli import main
 
-sys.exit(cdwilson_sample.main())
+if __name__ == "__main__":
+    main()

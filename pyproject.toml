@@ -1,0 +1,32 @@
+[build-system]
+requires = [
+    "flit_core >=2,<4",
+    "wheel",
+]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "cdwilson_sample"
+author = "Chris Wilson"
+author-email = "christopher.david.wilson@gmail.com"
+home-page = "https://github.com/cdwilson/cdwilson-sampleproject"
+requires = [
+    "cowsay",
+]
+description-file = "README.md"
+classifiers = ["License :: OSI Approved :: MIT License"]
+dist-name = "cdwilson-sampleproject"
+
+[tool.flit.metadata.requires-extra]
+test = [
+    "pytest",
+]
+doc = [
+    "sphinx",
+]
+dev = [
+    "black",
+]
+
+[tool.flit.scripts]
+cdwilson_sample = "cdwilson_sample.cli:main"
