@@ -1,6 +1,16 @@
-.PHONY: all install dev-install test build test-publish publish docs view clean-docs tidy clean
+.PHONY: all docs clean-docs view install dev-install test build test-publish publish tidy clean
 
-all: test docs dist
+all: docs test build
+
+docs:
+	$(MAKE) -C docs html
+
+clean-docs:
+	-rm -rf docs/apidoc/
+	-$(MAKE) -C docs clean
+
+view:
+	open docs/_build/html/index.html
 
 install:
 	flit install --deps=none
@@ -19,16 +29,6 @@ test-publish:
 
 publish:
 	FLIT_INDEX_URL="https://pypi.org/legacy/" FLIT_USERNAME="cdwilson" flit publish
-
-docs:
-	$(MAKE) -C docs html
-
-view:
-	open docs/_build/html/index.html
-
-clean-docs:
-	-rm -rf docs/apidoc/
-	-$(MAKE) -C docs clean
 
 tidy:
 	find . -name \*.pyc -delete
