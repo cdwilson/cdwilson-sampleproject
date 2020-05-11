@@ -1,6 +1,16 @@
-.PHONY: all docs clean-docs view install dev-install test build test-publish publish tidy clean
+.PHONY: all docs clean-docs view install dev-install pypi-install testpypi-install test build test-publish publish tidy clean
+
+DIST_NAME := $(shell grep dist-name pyproject.toml | awk '{ print $$3 }')
+PYPI_USERNAME := cdwilson
+TESTPYPI_USERNAME := cdwilson
+PYPI_INDEX_URL := https://pypi.org/simple/
+TESTPYPI_INDEX_URL := https://test.pypi.org/simple/
+TESTPYPI_UPLOAD_URL := https://test.pypi.org/legacy/
 
 all: docs test build
+
+foo:
+	@echo $(DIST_NAME)
 
 docs:
 	$(MAKE) -C docs html
@@ -18,6 +28,12 @@ install:
 dev-install:
 	flit install -s --deps=develop
 
+pypi-install:
+	pip install $(DIST_NAME)
+
+testpypi-install:
+	pip install --index-url $(TESTPYPI_INDEX_URL) --extra-index-url $(PYPI_INDEX_URL) $(DIST_NAME)
+
 test:
 	py.test tests
 
@@ -25,10 +41,10 @@ build:
 	flit build
 
 test-publish:
-	FLIT_INDEX_URL="https://test.pypi.org/legacy/" FLIT_USERNAME="cdwilson" flit publish
+	FLIT_INDEX_URL="$(TESTPYPI_UPLOAD_URL)" FLIT_USERNAME="$(TESTPYPI_USERNAME)" flit publish
 
 publish:
-	FLIT_INDEX_URL="https://pypi.org/legacy/" FLIT_USERNAME="cdwilson" flit publish
+	FLIT_USERNAME="$(PYPI_USERNAME)" flit publish
 
 tidy:
 	find . -name \*.pyc -delete
