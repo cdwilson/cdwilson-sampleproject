@@ -20,6 +20,7 @@ dist-name = "cdwilson-sampleproject"
 [tool.flit.metadata.requires-extra]
 test = [
     "pytest",
+    "tox",
 ]
 doc = [
     "sphinx",
