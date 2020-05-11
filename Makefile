@@ -9,9 +9,6 @@ TESTPYPI_UPLOAD_URL := https://test.pypi.org/legacy/
 
 all: docs test build
 
-foo:
-	@echo $(DIST_NAME)
-
 docs:
 	$(MAKE) -C docs html
 
